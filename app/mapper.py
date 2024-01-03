@@ -1,5 +1,5 @@
-from app.models import Category, Expence
-from app.dto import CategoryDto, ExpenceDto
+from app.models import Category, Expense
+from app.dto import CategoryDto, ExpenseDto
 
 
 class CategoryMapper:
@@ -9,24 +9,25 @@ class CategoryMapper:
         category_dto.name = category.name
         return category_dto
 
-    def to_entity(category_dto: CategoryDto):
+    def to_entity(category_dto: CategoryDto, user_id:int):
         category = Category()
         if category_dto.id != None:
             category.id = category_dto.id
         category.name = category_dto.name
+        category.user_id = user_id
         return category
 
 
-class ExpenceMapper:
-    def to_dto(expence: Expence):
-        expence_dto = ExpenceDto()
-        expence_dto.id = expence.id
-        expence_dto.sum = expence.sum
-        return expence_dto
+class ExpenseMapper:
+    def to_dto(expence: Expense):
+        expense_dto = ExpenseDto()
+        expense_dto.id = expence.id
+        expense_dto.sum = expence.sum
+        return expense_dto
 
-    def to_entity(expence_dto: ExpenceDto):
-        expence = Expence()
-        if expence_dto.id != None:
-            expence.id = expence_dto.id
-        expence.sum = expence_dto.sum
-        return expence
+    def to_entity(expense_dto: ExpenseDto):
+        expense = Expense()
+        if expense_dto.id != None:
+            expense.id = expense_dto.id
+        expense.sum = expense_dto.sum
+        return expense
