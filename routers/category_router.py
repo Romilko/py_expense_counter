@@ -5,11 +5,17 @@ from app.dto import CategoryDto
 from app.models import User
 
 
+def get_router(get_db, get_current_user) -> APIRouter:
     service = CategoryService()
+
     router = APIRouter(prefix="/category", tags=["category"])
 
+    @router.get("/test")
+    def test(db: Session = Depends(get_db)):
+        return CategoryService.test(db=db)
+
     @router.get("/")
-    def hello_world(
+    def all_categoryes(
         db: Session = Depends(get_db), user: User = Depends(get_current_user)
     ):
         return service.find_all(db=db, user_id=user.id)

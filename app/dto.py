@@ -12,7 +12,8 @@ class ExpenseDto(BaseModel):
 class CategoryDto(BaseModel):
     id: int | None = None
     name: str | None = None
-    user_id:int | None = None
+    user_id: int | None = None
     expense: ExpenseDto | None = None
+
     def __str__(self):
         return f"{self.name}, {self.expence}"
