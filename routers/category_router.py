@@ -5,7 +5,6 @@ from app.dto import CategoryDto
 from app.models import User
 
 
-def get_category_router(get_db, get_current_user) -> APIRouter:
     service = CategoryService()
     router = APIRouter(prefix="/category", tags=["category"])
 
