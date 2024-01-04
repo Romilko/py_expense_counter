@@ -23,13 +23,13 @@ fastapi_users = fastapi_users.FastAPIUsers[User, int](
 
 get_current_user = fastapi_users.current_user()
 
-app.include_router(  # авторизация
+app.include_router(  
     fastapi_users.get_auth_router(auth_backend),
     prefix="/auth/jwt",
     tags=["auth"],
 )
 
-app.include_router(  # регистрация
+app.include_router(  
     fastapi_users.get_register_router(UserRead, UserCreate),
     prefix="/auth",
     tags=["auth"],
