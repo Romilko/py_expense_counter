@@ -11,18 +11,14 @@ def get_router(get_current_user) -> APIRouter:
 
     router = APIRouter(prefix="/category", tags=["category"])
 
-    @router.get("/test")
-    def test(db: Session = Depends(get_db)):
-        return CategoryService.test(db=db)
-
     @router.get("/")
-    def all_categoryes(
+    def get_all(
         db: Session = Depends(get_db), user: User = Depends(get_current_user)
     ):
         return service.find_all(db=db, user_id=user.id)
 
     @router.get("/{category_id}")
-    def get_category(
+    def get_by_id(
         category_id: int,
         db: Session = Depends(get_db),
         user: User = Depends(get_current_user),
@@ -30,7 +26,7 @@ def get_router(get_current_user) -> APIRouter:
         return service.find_by_id(db=db, category_id=category_id, user_id=user.id)
 
     @router.post("/")
-    def add_category(
+    def add(
         category_dto: CategoryDto,
         db: Session = Depends(get_db),
         user: User = Depends(get_current_user),
@@ -39,7 +35,7 @@ def get_router(get_current_user) -> APIRouter:
         return category
 
     @router.patch("/")
-    def update_category(
+    def update(
         category_dto: CategoryDto,
         db: Session = Depends(get_db),
         user: User = Depends(get_current_user),
@@ -47,7 +43,7 @@ def get_router(get_current_user) -> APIRouter:
         return service.update(db=db, category_dto=category_dto, user_id=user.id)
 
     @router.delete("/{category_id}")
-    def delete_category(
+    def delete(
         category_id: int,
         db: Session = Depends(get_db),
         user: User = Depends(get_current_user),

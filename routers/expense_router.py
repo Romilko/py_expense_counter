@@ -10,16 +10,16 @@ def get_router(get_current_user) -> APIRouter:
     router = APIRouter(prefix="/expence", tags=["expence"])
     service = CategoryService()
 
-    @router.post("/add")
-    def add_expence(
+    @router.post("/")
+    def add(
         category_dto: CategoryDto,
         db: Session = Depends(get_db),
         user: User = Depends(get_current_user),
     ):
         return service.add_expense(db=db, category_dto=category_dto, user_id=user.id)
 
-    @router.get("/show/{category_id}")
-    def show_current_mounth_expences(
+    @router.get("/month/{category_id}")
+    def get_mounth_expences(
         category_id: int,
         db: Session = Depends(get_db),
         user: User = Depends(get_current_user),
@@ -29,7 +29,7 @@ def get_router(get_current_user) -> APIRouter:
         )
 
     @router.get("/all")
-    def show_all_expense(
+    def get_all(
         db: Session = Depends(get_db), user: User = Depends(get_current_user)
     ):
         return service.show_all_expenses(db=db,user_id=user.id)
