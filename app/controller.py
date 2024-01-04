@@ -46,34 +46,34 @@ def get_db():
 def hello_world():
     return {"Message":"Hello world"}
 
-@app.get("/category")
-def hello_world(db: Session = Depends(get_db), user:User = Depends(get_current_user)):
-    return CategoryService.find_all(db=db,user_id=user.id)
+# @app.get("/category")
+# def hello_world(db: Session = Depends(get_db), user:User = Depends(get_current_user)):
+#     return CategoryService.find_all(db=db,user_id=user.id)
 
 
-@app.get("/category/{category_id}")
-def get_category(category_id:int, db: Session = Depends(get_db),user:User = Depends(get_current_user)):
-    return CategoryService.find_by_id(db=db, category_id = category_id, user_id = user.id)
+# @app.get("/category/{category_id}")
+# def get_category(category_id:int, db: Session = Depends(get_db),user:User = Depends(get_current_user)):
+#     return CategoryService.find_by_id(db=db, category_id = category_id, user_id = user.id)
 
 
-@app.post("/category")
-def add_category(category_dto: CategoryDto, db: Session = Depends(get_db),user:User = Depends(get_current_user)):
-    category = CategoryService.add(db=db, category_dto=category_dto, user_id = user.id)
-    return category
+# @app.post("/category")
+# def add_category(category_dto: CategoryDto, db: Session = Depends(get_db),user:User = Depends(get_current_user)):
+#     category = CategoryService.add(db=db, category_dto=category_dto, user_id = user.id)
+#     return category
 
 
-@app.patch("/category")
-def update_category(category_dto: CategoryDto, db: Session = Depends(get_db),user:User = Depends(get_current_user)):
-    return CategoryService.update(db=db, category_dto = category_dto, user_id=user.id)
+# @app.patch("/category")
+# def update_category(category_dto: CategoryDto, db: Session = Depends(get_db),user:User = Depends(get_current_user)):
+#     return CategoryService.update(db=db, category_dto = category_dto, user_id=user.id)
 
 
-@app.delete("/category/{category_id}")
-def delete_category(category_id:int, db: Session = Depends(get_db),user:User = Depends(get_current_user)):
-    try:
-        category_id = int(category_id)
-        return CategoryService.remove(db=db, category_id=category_id,user_id=user.id)
-    except:
-        return "Ошибка"
+# @app.delete("/category/{category_id}")
+# def delete_category(category_id:int, db: Session = Depends(get_db),user:User = Depends(get_current_user)):
+#     try:
+#         category_id = int(category_id)
+#         return CategoryService.remove(db=db, category_id=category_id,user_id=user.id)
+#     except:
+#         return "Ошибка"
 
 
 @app.post("/add_expense")
