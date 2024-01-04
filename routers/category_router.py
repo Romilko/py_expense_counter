@@ -8,13 +8,10 @@ from app.database import get_db
 
 def get_router(get_current_user) -> APIRouter:
     service = CategoryService()
-
     router = APIRouter(prefix="/category", tags=["category"])
 
     @router.get("/")
-    def get_all(
-        db: Session = Depends(get_db), user: User = Depends(get_current_user)
-    ):
+    def get_all(db: Session = Depends(get_db), user: User = Depends(get_current_user)):
         return service.find_all(db=db, user_id=user.id)
 
     @router.get("/{category_id}")
