@@ -3,12 +3,13 @@ from sqlalchemy.orm import Session
 from app.services import CategoryService 
 from app.models import User
 from app.dto import CategoryDto
+from app.database import get_db
 
 
-def get_router(get_db, get_current_user) -> APIRouter:
+def get_router(get_current_user) -> APIRouter:
     router = APIRouter(prefix="/expence", tags=["expence"])
     service = CategoryService()
-    
+
     @router.post("/add")
     def add_expence(
         category_dto: CategoryDto,

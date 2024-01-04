@@ -8,7 +8,7 @@ from auth.database import User
 from auth.manager import get_user_manager
 from auth.schemas import UserCreate, UserRead
 from routers import category_router, expense_router
-from app.database import get_db
+
 
 
 Base.metadata.create_all(bind=engine)
@@ -36,11 +36,11 @@ app.include_router(  # регистрация
 )
 
 app.include_router(
-    category_router.get_router(get_db=get_db, get_current_user=get_current_user)
+    category_router.get_router(get_current_user=get_current_user)
 )
 
 app.include_router(
-    expense_router.get_router(get_db=get_db, get_current_user=get_current_user)
+    expense_router.get_router(get_current_user=get_current_user)
 )
 
 

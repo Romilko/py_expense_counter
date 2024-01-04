@@ -3,9 +3,10 @@ from sqlalchemy.orm import Session
 from app.services import CategoryService
 from app.dto import CategoryDto
 from app.models import User
+from app.database import get_db
 
 
-def get_router(get_db, get_current_user) -> APIRouter:
+def get_router(get_current_user) -> APIRouter:
     service = CategoryService()
 
     router = APIRouter(prefix="/category", tags=["category"])
